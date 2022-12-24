@@ -1,0 +1,50 @@
+<!-- https://medium.com/swinginc/playing-with-midi-in-javascript-b6999f2913c3 -->
+<!-- https://www.ukulelebuddy.com/free-ukulele-chords.html -->
+<!-- https://www.google.com/search?q=virtual+ukulele+html -->
+<!-- https://ukebuddy.com/dist/mp3/E2.mp3 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Music</title>
+</head>
+<body>
+
+	<h1>Hear Music</h1>
+	<button id="play" onclick="playMp3()">Play Mp3</button>
+	Inspired By: <a href="https://www.ukulelebuddy.com/free-ukulele-chords.html"> ukulelebuddy </a>
+</body>
+<script type="text/javascript">
+
+	function playMp3(){
+		// let playMp3 = document.getElementById('play Mp3');
+		// play.addEventListener("click", playChord);
+		// let audio = new Audio("m.mid");
+
+		// let audio = new Audio("../lib/sound/mp3/D3.mp3");
+		// audio.play();
+
+		new Audio("../lib/sound/mp3/C3.mp3").play();
+		new Audio("../lib/sound/mp3/E3.mp3").play();
+		new Audio("../lib/sound/mp3/C3.mp3").play();
+		new Audio("../lib/sound/mp3/G3.mp3").play();
+	}
+
+
+	// chords 
+	// total files
+	chordList = [
+		"A2","A3","A4","As2","As3","As4",
+		"B2","B3","B4",
+		"C3","C4","Cs3","Cs4",
+		"D2","D3","D4","Ds2","Ds3","Ds4",
+		"E2","E3","E4",
+		"F2","F3","F4","Fs2","Fs3","Fs4",
+		"G2","G3","G4","Gs2","Gs3","Gs4",
+	]
+
+</script>
+</html>
+
