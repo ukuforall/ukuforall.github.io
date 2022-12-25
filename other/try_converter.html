@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Converter</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<style type="text/css">
+	.form-control{
+		width: 50%;
+	}
+
+/*	.container {
+	    height: 100%;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	}*/
+</style>
+<body>
+
+<body>
+
+<div class="container">
+  <h2>Notes to Tab</h2>
+  <p>Enter notes below</p>
+  
+    <div class="form-group">
+      <label for="user_note">Notes:</label>
+      <input type="text" class="form-control w-25" id="user_note" placeholder="Enter Note">
+    </div>
+    <button type="submit" class="btn btn-default" onclick="converterMain()">Convert</button>   
+  
+</div>
+	
+</body>
+<script type="text/javascript">
+	function converterMain(){
+		let user_note = document.getElementById('user_note');
+		let temp = user_note.value;
+
+		if(temp !=""){
+			console.log(temp);
+		}
+	}
+
+
+	function noteToTab(){
+		stringNoteBase = ["A", "E", "C", "G"];
+		// stringNoteBase = ["E", "A", "D", "G", "B", "E"];
+		stringLength = 14;
+		stringBoard = getStringTuneList(stringNoteBase, stringLength);
+
+		songNotes = "G4 A4 F# G4 F#".split(" ");
+		console.log(stringBoard);
+		console.log(songNotes);
+	}
+
+	function getBaseNotes(){
+
+		// No B or E sharp
+		singleString = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+
+		similarString = {
+			"A#" : "Bb",
+			"C#" : "Db",
+			"D#" : "Eb",
+			"F#" : "Gb",
+			"G#" : "Ab"
+		}
+		return singleString;
+	}
+
+	function getshiftedNotes(noteList, baseNote){
+
+		let startNoteIndex = noteList.indexOf(baseNote);
+
+		if(startNoteIndex>0){
+			noteList = noteList.slice(startNoteIndex).concat(noteList.slice(0,startNoteIndex));
+		}
+		return noteList;
+	}
+
+	function circular(noteList, n){
+		
+		length = noteList.length;
+		let newList = [];
+
+		for (var i = 0; i < n; i++) {
+			newList.push(noteList[i%length])
+		}
+
+		return newList;
+		// console.log(newList);
+		
+		// return -1;
+	}
+
+	function getStringTuneList(stringNoteBase, stringLength){
+		noteList = getBaseNotes();
+		// return stringNoteBase.forEach(note => circular(getshiftedNotes(noteList,note), stringLength+1));
+
+		allStringNotes = [];
+
+		for (var i = 0; i < stringNoteBase.length; i++) {
+			shiftNoteList = getshiftedNotes(noteList, stringNoteBase[i]);
+			temp = circular(shiftNoteList, stringLength+1);
+			allStringNotes.push(temp);
+		}
+		return allStringNotes;
+	}
+
+	noteToTab();
+</script>
+</html>
